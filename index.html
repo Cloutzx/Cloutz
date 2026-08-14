@@ -1,1 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#8b5cf6"
+    >
+
+    <meta
+        name="description"
+        content="Cloutz — gaming, socials, stats, communities and more."
+    >
+
+    <title>Cloutz — Official</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Website CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         PAGE LOADER
+    ========================================== -->
+
+    <div id="page-loader" class="page-loader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                C
+            </div>
+
+            <div class="loader-name">
+                CLOUTZ
+            </div>
+
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+
+            <div class="loader-text">
+                Loading Cloutz...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="background">
+
+        <div class="background-grid"></div>
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="glow glow-three"></div>
+
+        <div id="particles"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
+    <header class="navbar">
+
+        <a
+            href="#top"
+            class="nav-brand"
+        >
+
+            <span class="nav-brand-dot"></span>
+
+            <span>
+                CLOUTZ
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#gaming">
+                Gaming
+            </a>
+
+            <a href="#socials">
+                Socials
+            </a>
+
+            <a href="#community">
+                Community
+            </a>
+
+        </nav>
+
+
+        <button
+            id="settings-button"
+            class="settings-button"
+            aria-label="Open settings"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+    </header>
+
+
+    <!-- =========================================
+         SETTINGS PANEL
+    ========================================== -->
+
+    <aside
+        id="settings-panel"
+        class="settings-panel"
+    >
+
+        <div class="settings-header">
+
+            <div>
+
+                <span class="settings-small">
+                    PERSONALIZE
+                </span>
+
+                <h3>
+                    Site Settings
+                </h3>
+
+            </div>
+
+            <button
+                id="close-settings"
+                class="close-settings"
+                aria-label="Close settings"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="settings-option">
+
+            <div class="settings-option-info">
+
+                <i class="fa-solid fa-circle-half-stroke"></i>
+
+                <div>
+
+                    <strong>
+                        Appearance
+                    </strong>
+
+                    <span>
+                        Dark / Light
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="theme-toggle"
+                class="setting-control"
+            >
+                Dark
+            </button>
+
+        </div>
+
+
+        <div class="settings-option">
+
+            <div class="settings-option-info">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <div>
+
+                    <strong>
+                        Animations
+                    </strong>
+
+                    <span>
+                        Visual effects
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="animation-toggle"
+                class="setting-control"
+            >
+                On
+            </button>
+
+        </div>
+
+
+        <div class="settings-option">
+
+            <div class="settings-option-info">
+
+                <i class="fa-solid fa-computer-mouse"></i>
+
+                <div>
+
+                    <strong>
+                        Cursor Glow
+                    </strong>
+
+                    <span>
+                        Mouse lighting effect
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="cursor-toggle"
+                class="setting-control"
+            >
+                On
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main id="top">
+
+
+        <!-- =====================================
+             HERO
+        ====================================== -->
+
+        <section class="hero">
+
+            <div class="profile-wrapper">
+
+                <div class="profile-glow"></div>
+
+                <div class="profile-picture">
+
+                    <span>
+                        C
+                    </span>
+
+                </div>
+
+                <div class="online-indicator"></div>
+
+            </div>
+
+
+            <div class="hero-name-row">
+
+                <h1>
+                    Cloutz
+                </h1>
+
+                <span
+                    class="verified-badge"
+                    title="Cloutz"
+                >
+                    <i class="fa-solid fa-check"></i>
+                </span>
+
+            </div>
+
+
+            <p class="hero-subtitle">
+
+                Gaming • Content • Community
+
+            </p>
+
+
+            <p class="hero-description">
+
+                Welcome to my corner of the internet.
+                Find my gaming stats, socials,
+                communities and everything Cloutz right here.
+
+            </p>
+
+
+            <div class="status-pill">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    Currently online
+                </span>
+
+            </div>
+
+
+            <!-- Social Icons -->
+
+            <div class="quick-socials">
+
+                <a
+                    href="https://www.tiktok.com/@cloutz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok"
+                    class="quick-social"
+                >
+
+                    <i class="fa-brands fa-tiktok"></i>
+
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/luvforgavin/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    class="quick-social"
+                >
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a
+                    href="https://kick.com/cloutzsy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Kick"
+                    class="quick-social"
+                >
+
+                    <span class="kick-icon">
+                        K
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="https://open.spotify.com/user/31yah52rzvxm3pn6yzz2gsbmisku?si=df694a425ce84555&nd=1&dlsi=bc488983c1364acb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Spotify"
+                    class="quick-social"
+                >
+
+                    <i class="fa-brands fa-spotify"></i>
+
+                </a>
+
+
+                <!-- Replace # with your Twitch URL -->
+
+                <a
+                    href="#"
+                    id="twitch-quick-link"
+                    aria-label="Twitch"
+                    class="quick-social"
+                >
+
+                    <i class="fa-brands fa-twitch"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FEATURED
+        ====================================== -->
+
+        <section class="featured-card reveal">
+
+            <div class="featured-background"></div>
+
+            <div class="featured-content">
+
+                <span class="featured-label">
+                    <i class="fa-solid fa-star"></i>
+                    FEATURED
+                </span>
+
+
+                <h2>
+                    Welcome to Cloutz Haven
+                    <span class="heart">
+                        ꨄ
+                    </span>
+                </h2>
+
+
+                <p>
+
+                    Everything you need to find me online,
+                    all in one place.
+
+                </p>
+
+
+                <div class="featured-actions">
+
+                    <a
+                        href="https://kick.com/cloutzsy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="primary-button"
+                    >
+
+                        <i class="fa-solid fa-play"></i>
+
+                        Watch on Kick
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#gaming"
+                        class="secondary-button"
+                    >
+
+                        Explore
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="featured-decoration">
+
+                <div class="decoration-ring ring-one"></div>
+                <div class="decoration-ring ring-two"></div>
+                <div class="decoration-ring ring-three"></div>
+
+                <div class="decoration-core">
+                    C
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             GAMING
+        ====================================== -->
+
+        <section
+            id="gaming"
+            class="content-section"
+        >
+
+            <div class="section-heading reveal">
+
+                <div>
+
+                    <span class="section-kicker">
+                        <i class="fa-solid fa-gamepad"></i>
+                        GAMING
+                    </span>
+
+                    <h2>
+                        My Gaming Profiles
+                    </h2>
+
+                </div>
+
+
+                <span class="section-number">
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="link-grid">
+
+
+                <!-- Fortnite -->
+
+                <a
+                    href="https://fortnitetracker.com/profile/all/%d1%81l%d0%beutz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon fortnite-icon">
+
+                        <i class="fa-solid fa-crosshairs"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            FORTNITE
+                        </span>
+
+                        <h3>
+                            Fortnite Tracker
+                        </h3>
+
+                        <p>
+                            View my Fortnite stats,
+                            matches and performance.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Rainbow Six -->
+
+                <a
+                    href="https://r6.tracker.network/r6siege/profile/ubi/x4cloutz/overview"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon r6-icon">
+
+                        <span>
+                            R6
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            RAINBOW SIX SIEGE
+                        </span>
+
+                        <h3>
+                            R6 Tracker
+                        </h3>
+
+                        <p>
+                            Check my Siege stats,
+                            rank and performance.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Roblox -->
+
+                <a
+                    href="https://www.roblox.com/users/771130999/profile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon roblox-icon">
+
+                        <i class="fa-solid fa-cube"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            ROBLOX
+                        </span>
+
+                        <h3>
+                            Roblox Profile
+                        </h3>
+
+                        <p>
+                            Visit my Roblox profile
+                            and check out my games.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Roblox Group -->
+
+                <a
+                    href="https://www.roblox.com/communities/32941104/Cloutzs-Paradise#!/about"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon group-icon">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            COMMUNITY
+                        </span>
+
+                        <h3>
+                            Cloutz's Paradise
+                        </h3>
+
+                        <p>
+                            Join my Roblox community.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SOCIALS
+        ====================================== -->
+
+        <section
+            id="socials"
+            class="content-section"
+        >
+
+            <div class="section-heading reveal">
+
+                <div>
+
+                    <span class="section-kicker">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        SOCIALS
+                    </span>
+
+                    <h2>
+                        Find Me Online
+                    </h2>
+
+                </div>
+
+
+                <span class="section-number">
+                    02
+                </span>
+
+            </div>
+
+
+            <div class="link-grid">
+
+
+                <!-- TikTok -->
+
+                <a
+                    href="https://www.tiktok.com/@cloutz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon tiktok-icon">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            SOCIAL
+                        </span>
+
+                        <h3>
+                            TikTok
+                        </h3>
+
+                        <p>
+                            Follow @cloutz for
+                            videos and content.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Instagram -->
+
+                <a
+                    href="https://www.instagram.com/luvforgavin/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon instagram-icon">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            SOCIAL
+                        </span>
+
+                        <h3>
+                            Instagram
+                        </h3>
+
+                        <p>
+                            Follow me on Instagram.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Kick -->
+
+                <a
+                    href="https://kick.com/cloutzsy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon kick-icon-card">
+
+                        <span>
+                            K
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            STREAMING
+                        </span>
+
+                        <h3>
+                            Kick
+                        </h3>
+
+                        <p>
+                            Watch my streams and
+                            hang out in chat.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Spotify -->
+
+                <a
+                    href="https://open.spotify.com/user/31yah52rzvxm3pn6yzz2gsbmisku?si=df694a425ce84555&nd=1&dlsi=bc488983c1364acb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon spotify-icon">
+
+                        <i class="fa-brands fa-spotify"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            MUSIC
+                        </span>
+
+                        <h3>
+                            Spotify
+                        </h3>
+
+                        <p>
+                            Check out what I'm
+                            listening to.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Twitch -->
+
+                <a
+                    href="#"
+                    id="twitch-link"
+                    class="link-card reveal"
+                >
+
+                    <div class="card-icon twitch-icon">
+
+                        <i class="fa-brands fa-twitch"></i>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="card-category">
+                            STREAMING
+                        </span>
+
+                        <h3>
+                            Twitch
+                        </h3>
+
+                        <p>
+                            Follow me on Twitch
+                            and catch the streams.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-arrow">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             COMMUNITY
+        ====================================== -->
+
+        <section
+            id="community"
+            class="content-section"
+        >
+
+            <div class="section-heading reveal">
+
+                <div>
+
+                    <span class="section-kicker">
+                        <i class="fa-solid fa-users"></i>
+                        COMMUNITY
+                    </span>
+
+                    <h2>
+                        Join The Community
+                    </h2>
+
+                </div>
+
+
+                <span class="section-number">
+                    03
+                </span>
+
+            </div>
+
+
+            <!-- Discord -->
+
+            <a
+                href="#"
+                id="discord-link"
+                class="discord-card reveal"
+            >
+
+                <div class="discord-icon">
+
+                    <i class="fa-brands fa-discord"></i>
+
+                </div>
+
+
+                <div class="discord-content">
+
+                    <span class="discord-kicker">
+                        DISCORD COMMUNITY
+                    </span>
+
+                    <h3>
+                        Cloutz Haven
+                        <span>
+                            ꨄ
+                        </span>
+                    </h3>
+
+                    <p>
+                        Hang out, talk gaming,
+                        share clips and join the community.
+                    </p>
+
+                </div>
+
+
+                <div class="discord-button">
+
+                    Join
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <!-- =====================================
+             MINI STATS
+        ====================================== -->
+
+        <section class="stats-section reveal">
+
+            <div class="mini-stat">
+
+                <span class="mini-stat-icon">
+                    <i class="fa-solid fa-gamepad"></i>
+                </span>
+
+                <div>
+
+                    <strong>
+                        Gaming
+                    </strong>
+
+                    <span>
+                        Fortnite • R6 • Roblox
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <span class="mini-stat-icon">
+                    <i class="fa-solid fa-video"></i>
+                </span>
+
+                <div>
+
+                    <strong>
+                        Content
+                    </strong>
+
+                    <span>
+                        Streams • Clips • Videos
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <span class="mini-stat-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </span>
+
+                <div>
+
+                    <strong>
+                        Community
+                    </strong>
+
+                    <span>
+                        Cloutz Haven ꨄ
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer>
+
+            <div class="footer-logo">
+
+                <span class="footer-dot"></span>
+
+                CLOUTZ
+
+            </div>
+
+
+            <p>
+                Built with ♡ for Cloutz Haven.
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="#top">
+                    Home
+                </a>
+
+                <span>•</span>
+
+                <a href="#gaming">
+                    Gaming
+                </a>
+
+                <span>•</span>
+
+                <a href="#socials">
+                    Socials
+                </a>
+
+                <span>•</span>
+
+                <a href="#community">
+                    Community
+                </a>
+
+            </div>
+
+
+            <p class="copyright">
+                © 2026 Cloutz. All rights reserved.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span id="toast-message">
+            Coming soon
+        </span>
+
+    </div>
+
+
+    <!-- Website JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
