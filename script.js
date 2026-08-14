@@ -1,181 +1,121 @@
-const body = document.body;
+/* =========================================================
+   CLOUTZ — MAIN SCRIPT
+   Smooth animations / settings / particles / interactions
+========================================================= */
 
-const settingsButton =
-    document.getElementById("settings-button");
+document.addEventListener("DOMContentLoaded", () => {
 
-const settingsPanel =
-    document.getElementById("settings-panel");
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-const closeSettings =
-    document.getElementById("close-settings");
+    const body = document.body;
 
-const themeToggle =
-    document.getElementById("theme-toggle");
+    const settingsButton =
+        document.querySelector(".settings-button");
 
-const animationToggle =
-    document.getElementById("animation-toggle");
+    const settingsPanel =
+        document.querySelector(".settings-panel");
 
-const cursorToggle =
-    document.getElementById("cursor-toggle");
+    const closeSettings =
+        document.querySelector(".close-settings");
 
-const pageLoader =
-    document.getElementById("page-loader");
+    const themeButton =
+        document.querySelector("[data-theme]");
 
-const toast =
-    document.getElementById("toast");
+    const animationButton =
+        document.querySelector("[data-animations]");
 
-const toastMessage =
-    document.getElementById("toast-message");
+    const cursorButton =
+        document.querySelector("[data-cursor]");
 
-const particles =
-    document.getElementById("particles");
+    const particlesContainer =
+        document.querySelector("#particles");
 
-const twitchLink =
-    document.getElementById("twitch-link");
+    const pageLoader =
+        document.querySelector(".page-loader");
 
-const twitchQuickLink =
-    document.getElementById("twitch-quick-link");
 
-const discordLink =
-    document.getElementById("discord-link");
+    /* =====================================================
+       PAGE LOADER
+    ===================================================== */
 
-let settings = {
-    theme:
-        localStorage.getItem("cloutz-theme") || "dark",
+    window.addEventListener("load", () => {
 
-    animations:
-        localStorage.getItem("cloutz-animations") !== "off",
+        setTimeout(() => {
 
-    cursor:
-        localStorage.getItem("cloutz-cursor") !== "off"
-};
+            if (pageLoader) {
+                pageLoader.classList.add("loaded");
+            }
 
-function applySettings() {
+        }, 650);
 
-    if (settings.theme === "light") {
+    });
 
-        body.classList.add("light");
 
-        if (themeToggle) {
-            themeToggle.textContent = "Light";
-        }
+    /* =====================================================
+       SETTINGS PANEL
+    ===================================================== */
 
-    } else {
+    function openSettings() {
 
-        body.classList.remove("light");
+        if (!settingsPanel) return;
 
-        if (themeToggle) {
-            themeToggle.textContent = "Dark";
-        }
-    }
+        settingsPanel.classList.add("open");
 
-    if (settings.animations) {
-
-        body.classList.remove("no-animations");
-
-        if (animationToggle) {
-            animationToggle.textContent = "On";
-        }
-
-    } else {
-
-        body.classList.add("no-animations");
-
-        if (animationToggle) {
-            animationToggle.textContent = "Off";
-        }
     }
 
 
-    if (settings.cursor) {
+    function closeSettingsPanel() {
 
-        body.classList.remove("no-cursor-glow");
+        if (!settingsPanel) return;
 
-        if (cursorToggle) {
-            cursorToggle.textContent = "On";
-        }
+        settingsPanel.classList.remove("open");
 
-    } else {
-
-        body.classList.add("no-cursor-glow");
-
-        if (cursorToggle) {
-            cursorToggle.textContent = "Off";
-        }
     }
-}
 
 
-applySettings();
+    if (settingsButton) {
 
-function openSettings() {
-
-    if (!settingsPanel) return;
-
-    settingsPanel.classList.add("open");
-
-}
-
-
-function closeSettingsPanel() {
-
-    if (!settingsPanel) return;
-
-    settingsPanel.classList.remove("open");
-
-}
-
-if (settingsButton) {
-
-    settingsButton.addEventListener(
-        "click",
-        (event) => {
+        settingsButton.addEventListener("click", (event) => {
 
             event.stopPropagation();
 
-            settingsPanel.classList.toggle("open");
+            settingsPanel?.classList.toggle("open");
 
-        }
-    );
+        });
 
-}
+    }
 
 
-if (closeSettings) {
+    if (closeSettings) {
 
-    closeSettings.addEventListener(
-        "click",
-        () => {
+        closeSettings.addEventListener(
+            "click",
+            closeSettingsPanel
+        );
 
-            closeSettingsPanel();
+    }
 
-        }
-    );
 
-}
-
-document.addEventListener(
-    "click",
-    (event) => {
+    document.addEventListener("click", (event) => {
 
         if (!settingsPanel) return;
 
         if (
             settingsPanel.classList.contains("open") &&
             !settingsPanel.contains(event.target) &&
-            !settingsButton.contains(event.target)
+            !settingsButton?.contains(event.target)
         ) {
 
             closeSettingsPanel();
 
         }
 
-    }
-);
+    });
 
-document.addEventListener(
-    "keydown",
-    (event) => {
+
+    document.addEventListener("keydown", (event) => {
 
         if (event.key === "Escape") {
 
@@ -183,261 +123,483 @@ document.addEventListener(
 
         }
 
+    });
+
+
+    /* =====================================================
+       THEME SYSTEM
+    ===================================================== */
+
+    const savedTheme =
+        localStorage.getItem("cloutz-theme");
+
+
+    function updateThemeButton() {
+
+        if (!themeButton) return;
+
+        const isLight =
+            body.classList.contains("light");
+
+        themeButton.textContent =
+            isLight ? "Dark" : "Light";
+
     }
-);
 
-if (themeToggle) {
 
-    themeToggle.addEventListener(
-        "click",
-        () => {
+    function setTheme(theme) {
 
-            settings.theme =
-                settings.theme === "dark"
-                    ? "light"
-                    : "dark";
+        if (theme === "light") {
+
+            body.classList.add("light");
 
             localStorage.setItem(
                 "cloutz-theme",
-                settings.theme
+                "light"
             );
 
-            applySettings();
+        } else {
 
-            showToast(
-                settings.theme === "light"
-                    ? "Light mode enabled"
-                    : "Dark mode enabled"
+            body.classList.remove("light");
+
+            localStorage.setItem(
+                "cloutz-theme",
+                "dark"
             );
 
         }
-    );
 
-}
+        updateThemeButton();
 
-if (animationToggle) {
+    }
 
-    animationToggle.addEventListener(
-        "click",
-        () => {
 
-            settings.animations =
-                !settings.animations;
+    if (savedTheme === "light") {
+
+        body.classList.add("light");
+
+    } else {
+
+        body.classList.remove("light");
+
+    }
+
+
+    updateThemeButton();
+
+
+    if (themeButton) {
+
+        themeButton.addEventListener("click", () => {
+
+            const isLight =
+                body.classList.contains("light");
+
+            setTheme(
+                isLight
+                    ? "dark"
+                    : "light"
+            );
+
+            showToast(
+                isLight
+                    ? "Dark mode enabled"
+                    : "Light mode enabled"
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       ANIMATION TOGGLE
+    ===================================================== */
+
+    const savedAnimations =
+        localStorage.getItem("cloutz-animations");
+
+
+    if (savedAnimations === "off") {
+
+        body.classList.add("no-animations");
+
+    }
+
+
+    function updateAnimationButton() {
+
+        if (!animationButton) return;
+
+        const disabled =
+            body.classList.contains("no-animations");
+
+        animationButton.textContent =
+            disabled
+                ? "Off"
+                : "On";
+
+    }
+
+
+    updateAnimationButton();
+
+
+    if (animationButton) {
+
+        animationButton.addEventListener("click", () => {
+
+            body.classList.toggle(
+                "no-animations"
+            );
+
+            const disabled =
+                body.classList.contains(
+                    "no-animations"
+                );
 
             localStorage.setItem(
                 "cloutz-animations",
-                settings.animations
-                    ? "on"
-                    : "off"
+                disabled
+                    ? "off"
+                    : "on"
             );
 
-            applySettings();
+            updateAnimationButton();
 
             showToast(
-                settings.animations
-                    ? "Animations enabled"
-                    : "Animations disabled"
+                disabled
+                    ? "Animations disabled"
+                    : "Animations enabled"
             );
 
-            if (settings.animations) {
+        });
 
-                createParticles();
+    }
 
-                observeRevealElements();
 
-            }
+    /* =====================================================
+       CURSOR GLOW
+    ===================================================== */
 
-        }
-    );
+    const savedCursor =
+        localStorage.getItem("cloutz-cursor");
 
-}
 
-if (cursorToggle) {
+    if (savedCursor === "off") {
 
-    cursorToggle.addEventListener(
-        "click",
-        () => {
+        body.classList.add("no-cursor-glow");
 
-            settings.cursor =
-                !settings.cursor;
+    }
+
+
+    function updateCursorButton() {
+
+        if (!cursorButton) return;
+
+        const disabled =
+            body.classList.contains(
+                "no-cursor-glow"
+            );
+
+        cursorButton.textContent =
+            disabled
+                ? "Off"
+                : "On";
+
+    }
+
+
+    updateCursorButton();
+
+
+    if (cursorButton) {
+
+        cursorButton.addEventListener("click", () => {
+
+            body.classList.toggle(
+                "no-cursor-glow"
+            );
+
+            const disabled =
+                body.classList.contains(
+                    "no-cursor-glow"
+                );
 
             localStorage.setItem(
                 "cloutz-cursor",
-                settings.cursor
-                    ? "on"
-                    : "off"
+                disabled
+                    ? "off"
+                    : "on"
             );
 
-            applySettings();
+            updateCursorButton();
 
             showToast(
-                settings.cursor
-                    ? "Cursor glow enabled"
-                    : "Cursor glow disabled"
+                disabled
+                    ? "Cursor glow disabled"
+                    : "Cursor glow enabled"
             );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SMOOTH CURSOR GLOW
+    ===================================================== */
+
+    let targetMouseX =
+        window.innerWidth / 2;
+
+    let targetMouseY =
+        window.innerHeight / 2;
+
+    let currentMouseX =
+        targetMouseX;
+
+    let currentMouseY =
+        targetMouseY;
+
+
+    let mouseMoving = false;
+
+
+    document.addEventListener(
+        "mousemove",
+        (event) => {
+
+            targetMouseX =
+                event.clientX;
+
+            targetMouseY =
+                event.clientY;
+
+            mouseMoving = true;
+
+        },
+        { passive: true }
+    );
+
+
+    function updateMouseGlow() {
+
+        const dx =
+            targetMouseX -
+            currentMouseX;
+
+        const dy =
+            targetMouseY -
+            currentMouseY;
+
+
+        currentMouseX += dx * 0.085;
+        currentMouseY += dy * 0.085;
+
+
+        document.documentElement.style.setProperty(
+            "--mouse-x",
+            `${currentMouseX}px`
+        );
+
+
+        document.documentElement.style.setProperty(
+            "--mouse-y",
+            `${currentMouseY}px`
+        );
+
+
+        requestAnimationFrame(
+            updateMouseGlow
+        );
+
+    }
+
+
+    updateMouseGlow();
+
+
+    /* =====================================================
+       PARTICLES
+    ===================================================== */
+
+    function createParticles() {
+
+        if (!particlesContainer) return;
+
+
+        particlesContainer.innerHTML = "";
+
+
+        const mobile =
+            window.innerWidth <= 600;
+
+
+        const particleCount =
+            mobile ? 14 : 26;
+
+
+        const fragment =
+            document.createDocumentFragment();
+
+
+        for (
+            let i = 0;
+            i < particleCount;
+            i++
+        ) {
+
+            const particle =
+                document.createElement("span");
+
+
+            particle.className =
+                "particle";
+
+
+            const size =
+                Math.random() * 3 + 1;
+
+
+            const left =
+                Math.random() * 100;
+
+
+            const top =
+                Math.random() * 100;
+
+
+            const duration =
+                9 + Math.random() * 9;
+
+
+            const delay =
+                Math.random() * -15;
+
+
+            particle.style.width =
+                `${size}px`;
+
+            particle.style.height =
+                `${size}px`;
+
+            particle.style.left =
+                `${left}%`;
+
+            particle.style.top =
+                `${top}%`;
+
+            particle.style.animationDuration =
+                `${duration}s`;
+
+            particle.style.animationDelay =
+                `${delay}s`;
+
+            particle.style.opacity =
+                `${0.2 + Math.random() * 0.5}`;
+
+
+            fragment.appendChild(
+                particle
+            );
+
+        }
+
+
+        particlesContainer.appendChild(
+            fragment
+        );
+
+    }
+
+
+    createParticles();
+
+
+    let particleResizeTimeout;
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            clearTimeout(
+                particleResizeTimeout
+            );
+
+
+            particleResizeTimeout =
+                setTimeout(
+                    createParticles,
+                    250
+                );
 
         }
     );
 
-}
 
-let toastTimeout;
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
 
-
-function showToast(message) {
-
-    if (!toast) return;
-
-    if (toastMessage) {
-        toastMessage.textContent = message;
-    }
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimeout);
-
-    toastTimeout = setTimeout(
-        () => {
-
-            toast.classList.remove("show");
-
-        },
-        2500
-    );
-}
-
-window.addEventListener(
-    "load",
-    () => {
-
-        setTimeout(
-            () => {
-
-                if (!pageLoader) return;
-
-                pageLoader.classList.add("loaded");
-
-                setTimeout(
-                    () => {
-
-                        pageLoader.style.display =
-                            "none";
-
-                    },
-                    700
-                );
-
-            },
-            900
-        );
-
-    }
-);
-
-function createParticles() {
-
-    if (!particles) return;
-
-    particles.innerHTML = "";
-
-    if (!settings.animations) return;
-
-
-    const particleCount =
-        window.innerWidth < 700
-            ? 18
-            : 32;
-
-
-    for (
-        let i = 0;
-        i < particleCount;
-        i++
-    ) {
-
-        const particle =
-            document.createElement("span");
-
-        particle.className =
-            "particle";
-
-
-        const size =
-            Math.random() * 4 + 1;
-
-
-        particle.style.width =
-            `${size}px`;
-
-        particle.style.height =
-            `${size}px`;
-
-
-        particle.style.left =
-            `${Math.random() * 100}%`;
-
-
-        particle.style.top =
-            `${Math.random() * 100}%`;
-
-
-        particle.style.animationDelay =
-            `${Math.random() * 8}s`;
-
-
-        particle.style.animationDuration =
-            `${Math.random() * 8 + 8}s`;
-
-
-        particle.style.opacity =
-            `${Math.random() * 0.55 + 0.15}`;
-
-
-        particles.appendChild(
-            particle
-        );
-
-    }
-
-}
-
-
-createParticles();
-
-let resizeTimeout;
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        clearTimeout(resizeTimeout);
-
-        resizeTimeout = setTimeout(
-            () => {
-
-                createParticles();
-
-            },
-            250
-        );
-
-    }
-);
-
-let revealObserver;
-
-
-function observeRevealElements() {
-
-    const elements =
+    const revealElements =
         document.querySelectorAll(
             ".reveal"
         );
 
 
-    if (!settings.animations) {
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
 
-        elements.forEach(
+        const revealObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin:
+                        "0px 0px -50px 0px"
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+    } else {
+
+        revealElements.forEach(
             (element) => {
 
                 element.classList.add(
@@ -447,139 +609,62 @@ function observeRevealElements() {
             }
         );
 
-        return;
     }
 
 
-    if (revealObserver) {
-
-        revealObserver.disconnect();
-
-    }
-
-
-    revealObserver =
-        new IntersectionObserver(
-            (entries) => {
-
-                entries.forEach(
-                    (entry) => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.classList.add(
-                                "visible"
-                            );
-
-                            revealObserver.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                threshold: 0.08,
-                rootMargin: "0px 0px -30px 0px"
-            }
-        );
-
-
-    elements.forEach(
-        (element, index) => {
-
-            element.style.transitionDelay =
-                `${Math.min(index * 45, 350)}ms`;
-
-            revealObserver.observe(
-                element
-            );
-
-        }
-    );
-
-}
-
-
-observeRevealElements();
-
-let mouseX = 0;
-let mouseY = 0;
-
-let currentX = 0;
-let currentY = 0;
-
-
-document.addEventListener(
-    "mousemove",
-    (event) => {
-
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-
-    }
-);
-
-
-function animateCursorGlow() {
-
-    if (
-        settings.cursor &&
-        settings.animations
-    ) {
-
-        currentX +=
-            (mouseX - currentX) * 0.08;
-
-        currentY +=
-            (mouseY - currentY) * 0.08;
-
-
-        document.documentElement.style.setProperty(
-            "--mouse-x",
-            `${currentX}px`
-        );
-
-
-        document.documentElement.style.setProperty(
-            "--mouse-y",
-            `${currentY}px`
-        );
-
-    }
-
-
-    requestAnimationFrame(
-        animateCursorGlow
-    );
-
-}
-
-
-animateCursorGlow();
-
-function setupCardEffects() {
+    /* =====================================================
+       STAGGER CARD ANIMATIONS
+    ===================================================== */
 
     const cards =
         document.querySelectorAll(
-            ".link-card"
+            ".link-card, .mini-stat"
         );
 
 
     cards.forEach(
-        (card) => {
+        (card, index) => {
+
+            card.style.transitionDelay =
+                `${Math.min(index * 35, 280)}ms`;
+
+        }
+    );
+
+
+    /* =====================================================
+       3D CARD TILT
+       Very subtle — only on desktop
+    ===================================================== */
+
+    const canTilt =
+        window.matchMedia(
+            "(hover: hover) and (pointer: fine)"
+        ).matches;
+
+
+    if (canTilt) {
+
+        const tiltCards =
+            document.querySelectorAll(
+                ".link-card, .discord-card, .featured-card"
+            );
+
+
+        tiltCards.forEach((card) => {
+
+            let frame = null;
+
 
             card.addEventListener(
                 "mousemove",
                 (event) => {
 
-                    if (!settings.animations)
-                        return;
+                    if (
+                        body.classList.contains(
+                            "no-animations"
+                        )
+                    ) return;
 
 
                     const rect =
@@ -596,36 +681,46 @@ function setupCardEffects() {
                         rect.top;
 
 
-                    const centerX =
-                        rect.width / 2;
+                    const percentX =
+                        x / rect.width;
 
 
-                    const centerY =
-                        rect.height / 2;
+                    const percentY =
+                        y / rect.height;
 
 
                     const rotateY =
-                        ((x - centerX) /
-                            centerX) *
-                        3;
+                        (percentX - 0.5) * 4;
 
 
                     const rotateX =
-                        ((centerY - y) /
-                            centerY) *
-                        3;
+                        (0.5 - percentY) * 4;
 
 
-                    card.style.transform =
-                        `
-                        translateY(-5px)
-                        perspective(900px)
-                        rotateX(${rotateX}deg)
-                        rotateY(${rotateY}deg)
-                        scale(1.012)
-                        `;
+                    if (frame) {
 
-                }
+                        cancelAnimationFrame(
+                            frame
+                        );
+
+                    }
+
+
+                    frame =
+                        requestAnimationFrame(
+                            () => {
+
+                                card.style.transform =
+                                    `perspective(900px)
+                                     rotateX(${rotateX}deg)
+                                     rotateY(${rotateY}deg)
+                                     translateY(-5px)`;
+
+                            }
+                        );
+
+                },
+                { passive: true }
             );
 
 
@@ -633,8 +728,78 @@ function setupCardEffects() {
                 "mouseleave",
                 () => {
 
+                    if (frame) {
+
+                        cancelAnimationFrame(
+                            frame
+                        );
+
+                    }
+
+
                     card.style.transform =
                         "";
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       RIPPLE EFFECT
+    ===================================================== */
+
+    const rippleElements =
+        document.querySelectorAll(
+            ".primary-button, .secondary-button, .quick-social, .setting-control"
+        );
+
+
+    rippleElements.forEach(
+        (element) => {
+
+            element.addEventListener(
+                "click",
+                function (event) {
+
+                    const rect =
+                        this.getBoundingClientRect();
+
+
+                    const ripple =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    ripple.className =
+                        "click-ripple";
+
+
+                    ripple.style.left =
+                        `${event.clientX - rect.left}px`;
+
+
+                    ripple.style.top =
+                        `${event.clientY - rect.top}px`;
+
+
+                    this.appendChild(
+                        ripple
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            ripple.remove();
+
+                        },
+                        700
+                    );
 
                 }
             );
@@ -642,94 +807,113 @@ function setupCardEffects() {
         }
     );
 
-}
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    let toastTimer;
 
 
-setupCardEffects();
+    function showToast(message) {
 
-document.addEventListener(
-    "click",
-    (event) => {
-
-        const target =
-            event.target.closest(
-                ".primary-button, .secondary-button, .setting-control, .quick-social"
+        let toast =
+            document.querySelector(
+                ".toast"
             );
 
 
-        if (!target) return;
+        if (!toast) {
 
-        if (!settings.animations)
-            return;
+            toast =
+                document.createElement(
+                    "div"
+                );
 
 
-        const ripple =
-            document.createElement(
+            toast.className =
+                "toast";
+
+
+            toast.innerHTML = `
+                <i class="fa-solid fa-check"></i>
+                <span></span>
+            `;
+
+
+            document.body.appendChild(
+                toast
+            );
+
+        }
+
+
+        const text =
+            toast.querySelector(
                 "span"
             );
 
 
-        ripple.className =
-            "click-ripple";
+        if (text) {
+
+            text.textContent =
+                message;
+
+        }
 
 
-        const rect =
-            target.getBoundingClientRect();
-
-
-        ripple.style.left =
-            `${event.clientX - rect.left}px`;
-
-
-        ripple.style.top =
-            `${event.clientY - rect.top}px`;
-
-
-        target.appendChild(
-            ripple
+        clearTimeout(
+            toastTimer
         );
 
 
-        setTimeout(
-            () => {
-
-                ripple.remove();
-
-            },
-            650
+        toast.classList.add(
+            "show"
         );
+
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2200
+            );
 
     }
-);
 
-document.querySelectorAll(
-    'a[href^="#"]'
-).forEach(
-    (link) => {
+
+    /* =====================================================
+       SMOOTH INTERNAL LINKS
+    ===================================================== */
+
+    document.querySelectorAll(
+        'a[href^="#"]'
+    ).forEach((link) => {
 
         link.addEventListener(
             "click",
             (event) => {
 
-                const href =
+                const targetId =
                     link.getAttribute(
                         "href"
                     );
 
 
                 if (
-                    !href ||
-                    href === "#"
-                ) {
-
-                    return;
-
-                }
+                    !targetId ||
+                    targetId === "#"
+                ) return;
 
 
                 const target =
                     document.querySelector(
-                        href
+                        targetId
                     );
 
 
@@ -740,320 +924,144 @@ document.querySelectorAll(
 
 
                 target.scrollIntoView({
-                    behavior:
-                        settings.animations
-                            ? "smooth"
-                            : "auto",
+                    behavior: "smooth",
                     block: "start"
                 });
 
             }
         );
 
-    }
-);
-
-function twitchPlaceholder(event) {
-
-    event.preventDefault();
-
-    showToast(
-        "Add your Twitch URL to script.js"
-    );
-
-}
+    });
 
 
-if (twitchLink) {
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
 
-    twitchLink.addEventListener(
-        "click",
-        twitchPlaceholder
-    );
-
-}
-
-
-if (twitchQuickLink) {
-
-    twitchQuickLink.addEventListener(
-        "click",
-        twitchPlaceholder
-    );
-
-}
-
-if (discordLink) {
-
-    discordLink.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            showToast(
-                "Add your Discord invite to script.js"
-            );
-
-        }
-    );
-
-}
-
-document.addEventListener(
-    "mousemove",
-    (event) => {
-
-        if (!settings.animations)
-            return;
-
-
-        const x =
-            (event.clientX /
-                window.innerWidth -
-                0.5) *
-            2;
-
-
-        const y =
-            (event.clientY /
-                window.innerHeight -
-                0.5) *
-            2;
-
-
-        const glows =
-            document.querySelectorAll(
-                ".glow"
-            );
-
-
-        glows.forEach(
-            (glow, index) => {
-
-                const multiplier =
-                    (index + 1) * 8;
-
-
-                glow.style.transform =
-                    `
-                    translate(
-                        ${x * multiplier}px,
-                        ${y * multiplier}px
-                    )
-                    `;
-
-            }
+    const sections =
+        document.querySelectorAll(
+            "main section[id]"
         );
 
-    }
-);
 
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
+    const navLinks =
+        document.querySelectorAll(
+            ".nav-links a"
+        );
 
 
-const navLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
+    if (
+        sections.length &&
+        navLinks.length &&
+        "IntersectionObserver"
+        in window
+    ) {
+
+        const navObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) return;
 
 
-const sectionObserver =
-    new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(
-                (entry) => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        navLinks.forEach(
-                            (link) => {
-
-                                link.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
+                            const id =
+                                entry.target.id;
 
 
-                        const active =
-                            document.querySelector(
-                                `.nav-links a[href="#${entry.target.id}"]`
-                            );
+                            navLinks.forEach(
+                                (link) => {
 
+                                    link.classList.toggle(
+                                        "active",
+                                        link.getAttribute(
+                                            "href"
+                                        ) ===
+                                        `#${id}`
+                                    );
 
-                        if (active) {
-
-                            active.classList.add(
-                                "active"
+                                }
                             );
 
                         }
+                    );
 
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold: 0.35
-        }
-    );
-
-
-sections.forEach(
-    (section) => {
-
-        sectionObserver.observe(
-            section
-        );
-
-    }
-);
-
-function setupMagneticButtons() {
-
-    const buttons =
-        document.querySelectorAll(
-            ".primary-button, .secondary-button, .quick-social"
-        );
-
-
-    buttons.forEach(
-        (button) => {
-
-            button.addEventListener(
-                "mousemove",
-                (event) => {
-
-                    if (!settings.animations)
-                        return;
-
-
-                    const rect =
-                        button.getBoundingClientRect();
-
-
-                    const x =
-                        event.clientX -
-                        rect.left -
-                        rect.width / 2;
-
-
-                    const y =
-                        event.clientY -
-                        rect.top -
-                        rect.height / 2;
-
-
-                    button.style.transform =
-                        `
-                        translate(
-                            ${x * 0.12}px,
-                            ${y * 0.12}px
-                        )
-                        `;
-
+                },
+                {
+                    threshold: 0.25,
+                    rootMargin:
+                        "-20% 0px -60% 0px"
                 }
             );
 
 
-            button.addEventListener(
-                "mouseleave",
-                () => {
+        sections.forEach(
+            (section) => {
 
-                    button.style.transform =
-                        "";
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-setupMagneticButtons();
-
-function animateParticles() {
-
-    if (
-        !settings.animations ||
-        !particles
-    ) {
-
-        requestAnimationFrame(
-            animateParticles
-        );
-
-        return;
-
-    }
-
-
-    const particleElements =
-        particles.querySelectorAll(
-            ".particle"
-        );
-
-
-    particleElements.forEach(
-        (particle) => {
-
-            if (!particle.dataset.offset) {
-
-                particle.dataset.offset =
-                    Math.random() * 100;
+                navObserver.observe(
+                    section
+                );
 
             }
-
-        }
-    );
-
-
-    requestAnimationFrame(
-        animateParticles
-    );
-
-}
-
-
-animateParticles();
-
-document.addEventListener(
-    "visibilitychange",
-    () => {
-
-        if (
-            document.hidden
-        ) {
-
-            document.title =
-                "Cloutz";
-
-        } else {
-
-            document.title =
-                "Cloutz — Official";
-
-        }
+        );
 
     }
-);
 
-document.querySelectorAll(
-    "a, button"
-).forEach(
-    (element) => {
+
+    /* =====================================================
+       EXTERNAL LINKS
+    ===================================================== */
+
+    document.querySelectorAll(
+        'a[href^="http"]'
+    ).forEach((link) => {
+
+        link.setAttribute(
+            "target",
+            "_blank"
+        );
+
+
+        link.setAttribute(
+            "rel",
+            "noopener noreferrer"
+        );
+
+    });
+
+
+    /* =====================================================
+       IMAGE ERROR FALLBACK
+    ===================================================== */
+
+    document.querySelectorAll(
+        "img"
+    ).forEach((image) => {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                image.style.display =
+                    "none";
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       PREVENT DOUBLE CLICK JANK
+    ===================================================== */
+
+    document.querySelectorAll(
+        "button, a"
+    ).forEach((element) => {
 
         element.addEventListener(
             "dragstart",
@@ -1064,34 +1072,89 @@ document.querySelectorAll(
             }
         );
 
-    }
-);
-
-console.log(
-`
-%c CLOUTZ
-%c
-Welcome to the Cloutz website.
-
-Gaming • Content • Community
-`,
-"color:#a78bfa;font-size:30px;font-weight:800;",
-"color:#c4b5fd;font-size:13px;"
-);
-
-function initializeSite() {
-
-    applySettings();
-
-    createParticles();
-
-    observeRevealElements();
-
-    setupCardEffects();
-
-    setupMagneticButtons();
-
-}
+    });
 
 
-initializeSite();
+    /* =====================================================
+       VISIBILITY OPTIMIZATION
+       Stop expensive effects when tab isn't visible
+    ===================================================== */
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+
+            if (
+                document.hidden
+            ) {
+
+                body.classList.add(
+                    "page-hidden"
+                );
+
+            } else {
+
+                body.classList.remove(
+                    "page-hidden"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       KEYBOARD SHORTCUT
+       Press S to open settings
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.key.toLowerCase() ===
+                "s" &&
+                !["INPUT", "TEXTAREA"].includes(
+                    document.activeElement?.tagName
+                )
+            ) {
+
+                settingsPanel?.classList.toggle(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CONSOLE BRANDING
+    ===================================================== */
+
+    console.log(
+        "%c CLOUTZ ",
+        `
+        background: linear-gradient(
+            135deg,
+            #8b5cf6,
+            #d946ef
+        );
+        color: white;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-weight: 800;
+        font-size: 16px;
+        `
+    );
+
+
+    console.log(
+        "%cWelcome to Cloutz Haven.",
+        "color: #a78bfa; font-weight: 700;"
+    );
+
+});
