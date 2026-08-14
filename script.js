@@ -1,12 +1,3 @@
-/* =========================================================
-   CLOUTZ WEBSITE — SCRIPT
-   ========================================================= */
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
 const body = document.body;
 
 const settingsButton =
@@ -48,11 +39,6 @@ const twitchQuickLink =
 const discordLink =
     document.getElementById("discord-link");
 
-
-/* =========================================================
-   SETTINGS
-========================================================= */
-
 let settings = {
     theme:
         localStorage.getItem("cloutz-theme") || "dark",
@@ -64,14 +50,7 @@ let settings = {
         localStorage.getItem("cloutz-cursor") !== "off"
 };
 
-
-/* =========================================================
-   APPLY SETTINGS
-========================================================= */
-
 function applySettings() {
-
-    /* Theme */
 
     if (settings.theme === "light") {
 
@@ -90,9 +69,6 @@ function applySettings() {
         }
     }
 
-
-    /* Animations */
-
     if (settings.animations) {
 
         body.classList.remove("no-animations");
@@ -110,8 +86,6 @@ function applySettings() {
         }
     }
 
-
-    /* Cursor */
 
     if (settings.cursor) {
 
