@@ -134,11 +134,6 @@ function applySettings() {
 
 applySettings();
 
-
-/* =========================================================
-   SETTINGS PANEL
-========================================================= */
-
 function openSettings() {
 
     if (!settingsPanel) return;
@@ -155,7 +150,6 @@ function closeSettingsPanel() {
     settingsPanel.classList.remove("open");
 
 }
-
 
 if (settingsButton) {
 
@@ -186,9 +180,6 @@ if (closeSettings) {
 
 }
 
-
-/* Close when clicking outside */
-
 document.addEventListener(
     "click",
     (event) => {
@@ -208,11 +199,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
 document.addEventListener(
     "keydown",
     (event) => {
@@ -225,11 +211,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   THEME SWITCH
-========================================================= */
 
 if (themeToggle) {
 
@@ -259,11 +240,6 @@ if (themeToggle) {
     );
 
 }
-
-
-/* =========================================================
-   ANIMATION SWITCH
-========================================================= */
 
 if (animationToggle) {
 
@@ -302,11 +278,6 @@ if (animationToggle) {
 
 }
 
-
-/* =========================================================
-   CURSOR GLOW SWITCH
-========================================================= */
-
 if (cursorToggle) {
 
     cursorToggle.addEventListener(
@@ -336,11 +307,6 @@ if (cursorToggle) {
 
 }
 
-
-/* =========================================================
-   TOAST SYSTEM
-========================================================= */
-
 let toastTimeout;
 
 
@@ -365,11 +331,6 @@ function showToast(message) {
         2500
     );
 }
-
-
-/* =========================================================
-   PAGE LOADER
-========================================================= */
 
 window.addEventListener(
     "load",
@@ -398,11 +359,6 @@ window.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
 
 function createParticles() {
 
@@ -474,9 +430,6 @@ function createParticles() {
 
 createParticles();
 
-
-/* Rebuild particles when screen changes */
-
 let resizeTimeout;
 
 window.addEventListener(
@@ -496,11 +449,6 @@ window.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
 
 let revealObserver;
 
@@ -586,11 +534,6 @@ function observeRevealElements() {
 
 observeRevealElements();
 
-
-/* =========================================================
-   CURSOR GLOW
-========================================================= */
-
 let mouseX = 0;
 let mouseY = 0;
 
@@ -645,11 +588,6 @@ function animateCursorGlow() {
 
 
 animateCursorGlow();
-
-
-/* =========================================================
-   CARD 3D EFFECT
-========================================================= */
 
 function setupCardEffects() {
 
@@ -735,11 +673,6 @@ function setupCardEffects() {
 
 setupCardEffects();
 
-
-/* =========================================================
-   BUTTON RIPPLE EFFECT
-========================================================= */
-
 document.addEventListener(
     "click",
     (event) => {
@@ -795,11 +728,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================================
-   SMOOTH INTERNAL LINKS
-========================================================= */
-
 document.querySelectorAll(
     'a[href^="#"]'
 ).forEach(
@@ -851,11 +779,6 @@ document.querySelectorAll(
     }
 );
 
-
-/* =========================================================
-   TWITCH PLACEHOLDER
-========================================================= */
-
 function twitchPlaceholder(event) {
 
     event.preventDefault();
@@ -886,11 +809,6 @@ if (twitchQuickLink) {
 
 }
 
-
-/* =========================================================
-   DISCORD PLACEHOLDER
-========================================================= */
-
 if (discordLink) {
 
     discordLink.addEventListener(
@@ -907,11 +825,6 @@ if (discordLink) {
     );
 
 }
-
-
-/* =========================================================
-   PARALLAX BACKGROUND
-========================================================= */
 
 document.addEventListener(
     "mousemove",
@@ -961,11 +874,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   ACTIVE NAVIGATION
-========================================================= */
 
 const sections =
     document.querySelectorAll(
@@ -1037,11 +945,6 @@ sections.forEach(
     }
 );
 
-
-/* =========================================================
-   CARD MAGNETIC EFFECT
-========================================================= */
-
 function setupMagneticButtons() {
 
     const buttons =
@@ -1107,11 +1010,6 @@ function setupMagneticButtons() {
 
 setupMagneticButtons();
 
-
-/* =========================================================
-   RANDOM PARTICLE MOVEMENT
-========================================================= */
-
 function animateParticles() {
 
     if (
@@ -1157,11 +1055,6 @@ function animateParticles() {
 
 animateParticles();
 
-
-/* =========================================================
-   PAGE VISIBILITY
-========================================================= */
-
 document.addEventListener(
     "visibilitychange",
     () => {
@@ -1183,11 +1076,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================================
-   PREVENT ACCIDENTAL DRAGGING
-========================================================= */
-
 document.querySelectorAll(
     "a, button"
 ).forEach(
@@ -1205,11 +1093,6 @@ document.querySelectorAll(
     }
 );
 
-
-/* =========================================================
-   CONSOLE BRANDING
-========================================================= */
-
 console.log(
 `
 %c CLOUTZ
@@ -1221,11 +1104,6 @@ Gaming • Content • Community
 "color:#a78bfa;font-size:30px;font-weight:800;",
 "color:#c4b5fd;font-size:13px;"
 );
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
 
 function initializeSite() {
 
